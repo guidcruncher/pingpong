@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "@pingpong/shared",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "pnpm build"
+  }
+}

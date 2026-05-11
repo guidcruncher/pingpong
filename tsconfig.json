@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@pingpong/shared": [".shared/src/index.ts"] 
+    }
+  },
+  "files": [],
+  "references": [
+    { "path": "./apps/client" },
+    { "path": "./apps/server" },
+    { "path": "./shared" }
+  ]
+}

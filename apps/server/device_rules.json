@@ -1,0 +1,529 @@
+[
+  {
+    "id": "ps5",
+    "priority": 100,
+    "result": {
+      "type": "Games Console",
+      "os": "PlayStation 5 System Software",
+      "hardware": "PlayStation 5"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains_any",
+        "value": [
+          "sony interactive",
+          "sony computer"
+        ]
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "00D9D1",
+          "70AF24",
+          "E4AAEA"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ps4",
+    "priority": 95,
+    "result": {
+      "type": "Games Console",
+      "os": "Orbis OS",
+      "hardware": "PlayStation 4"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains_any",
+        "value": [
+          "sony interactive",
+          "sony computer"
+        ]
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "BC60A7",
+          "FC0FE6",
+          "1C666D",
+          "2CCC44",
+          "F8461C"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ps3_legacy",
+    "priority": 90,
+    "result": {
+      "type": "Games Console",
+      "os": "CellOS / XMB",
+      "hardware": "PlayStation 3 or Legacy Handheld"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains_any",
+        "value": [
+          "sony interactive",
+          "sony computer"
+        ]
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "00041F",
+          "001315",
+          "001FA7",
+          "00248D",
+          "D86BF7"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xbox_series",
+    "priority": 100,
+    "result": {
+      "type": "Games Console",
+      "os": "Xbox System Software (Scarlett)",
+      "hardware": "Xbox Series X/S"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "microsoft"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "501AC5",
+          "DCE994",
+          "281878"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xbox_one",
+    "priority": 95,
+    "result": {
+      "type": "Games Console",
+      "os": "Xbox System Software (Durango)",
+      "hardware": "Xbox One"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "microsoft"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "7CC0AA",
+          "7CED8D",
+          "985FD3",
+          "B4AE2B"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xbox_360",
+    "priority": 90,
+    "result": {
+      "type": "Games Console",
+      "os": "Xbox 360 Dashboard",
+      "hardware": "Xbox 360"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "microsoft"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "001DD8",
+          "002248",
+          "002500"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nintendo_switch",
+    "priority": 100,
+    "result": {
+      "type": "Games Console",
+      "os": "Nintendo Switch System Software (Horizon)",
+      "hardware": "Nintendo Switch"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "nintendo"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "342FBD",
+          "3C15C2",
+          "64B5C6",
+          "98B6E9",
+          "E0E2E6",
+          "18C2BF",
+          "CCFB65",
+          "9458CB"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nintendo_wiiu_3ds",
+    "priority": 95,
+    "result": {
+      "type": "Games Console",
+      "os": "Nintendo 3DS/WiiU OS",
+      "hardware": "Nintendo Wii U or 3DS Family"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "nintendo"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "2C10C1",
+          "582F40",
+          "B8AE6E",
+          "E4107B",
+          "DC68EB"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tapo_camera",
+    "priority": 110,
+    "result": {
+      "type": "IoT",
+      "os": "Embedded Linux",
+      "hardware": "TP-Link Tapo Camera"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains_any",
+        "value": [
+          "tp-link",
+          "espressif"
+        ]
+      },
+      {
+        "field": "ports",
+        "op": "includes_any",
+        "value": [
+          8899,
+          554
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tapo_plug",
+    "priority": 110,
+    "result": {
+      "type": "IoT",
+      "os": "FreeRTOS",
+      "hardware": "TP-Link Tapo Smart Device"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains_any",
+        "value": [
+          "tp-link",
+          "espressif"
+        ]
+      },
+      {
+        "field": "ports",
+        "op": "includes",
+        "value": 9999
+      }
+    ]
+  },
+  {
+    "id": "samsung_tizen_tv",
+    "priority": 95,
+    "result": {
+      "type": "Media Player",
+      "os": "Tizen OS",
+      "hardware": "Samsung Smart TV"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "services",
+        "op": "includes",
+        "value": "tizen"
+      },
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "samsung"
+      }
+    ]
+  },
+  {
+    "id": "google_cast",
+    "priority": 85,
+    "result": {
+      "type": "Media Player",
+      "os": "Cast OS / Android TV",
+      "hardware": "Google Nest or Chromecast"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "google"
+      },
+      {
+        "field": "services",
+        "op": "contains",
+        "value": "googlecast"
+      }
+    ]
+  },
+  {
+    "id": "raspberry_pi",
+    "priority": 40,
+    "result": {
+      "type": "sbc",
+      "os": "linux",
+      "hardware": "Raspberry Pi SBC"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "raspberry"
+      }
+    ]
+  },
+  {
+    "id": "infrastructure_fallback",
+    "priority": 10,
+    "result": {
+      "type": "Infrastructure",
+      "os": "Embedded Linux"
+    },
+    "logic": "OR",
+    "conditions": [
+      {
+        "field": "hostname",
+        "op": "contains",
+        "value": "gateway"
+      },
+      {
+        "field": "hostname",
+        "op": "contains",
+        "value": "router"
+      },
+      {
+        "field": "ports",
+        "op": "includes",
+        "value": 53
+      }
+    ]
+  },
+  {
+    "id": "nest_thermostat",
+    "priority": 80,
+    "result": {
+      "type": "IoT",
+      "os": "nest",
+      "hardware": "Nest Thermostat"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "nest labs"
+      }
+    ]
+  },
+  {
+    "id": "meross_iot",
+    "priority": 80,
+    "result": {
+      "type": "IoT",
+      "os": "meross",
+      "hardware": "Meross IoT"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "meross"
+      }
+    ]
+  },
+  {
+    "id": "apple_tv",
+    "priority": 85,
+    "result": {
+      "type": "Media Player",
+      "os": "tvOS",
+      "hardware": "Apple TV"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "apple"
+      },
+      {
+        "field": "services",
+        "op": "contains",
+        "value": "airplay"
+      },
+      {
+        "field": "ports",
+        "op": "includes",
+        "value": 7000
+      }
+    ]
+  },
+  {
+    "id": "amazon_alexa",
+    "priority": 80,
+    "result": {
+      "type": "IoT",
+      "os": "Fire OS variant",
+      "hardware": "Amazon Echo/Alexa"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "amazon"
+      },
+      {
+        "field": "services",
+        "op": "contains",
+        "value": "ds-as-generic"
+      }
+    ]
+  },
+  {
+    "id": "network_printer",
+    "priority": 75,
+    "result": {
+      "type": "Printer",
+      "os": "Firmware",
+      "hardware": "Network Printer"
+    },
+    "logic": "OR",
+    "conditions": [
+      {
+        "field": "services",
+        "op": "contains_any",
+        "value": [
+          "printer",
+          "ipp",
+          "pdl-datastream"
+        ]
+      },
+      {
+        "field": "ports",
+        "op": "includes_any",
+        "value": [
+          631,
+          9100
+        ]
+      }
+    ]
+  },
+  {
+    "id": "philips_hue",
+    "priority": 80,
+    "result": {
+      "type": "IoT",
+      "os": "Bridge OS",
+      "hardware": "Philips Hue Bridge"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "signify"
+      },
+      {
+        "field": "mac_prefix",
+        "op": "in_list",
+        "value": [
+          "001788"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sonos_speaker",
+    "priority": 85,
+    "result": {
+      "type": "Media Player",
+      "os": "Linux / Sonos OS",
+      "hardware": "Sonos Speaker"
+    },
+    "logic": "AND",
+    "conditions": [
+      {
+        "field": "vendor",
+        "op": "contains",
+        "value": "sonos"
+      },
+      {
+        "field": "services",
+        "op": "contains",
+        "value": "sonos"
+      }
+    ]
+  }
+]

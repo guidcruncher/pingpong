@@ -1,0 +1,42 @@
+networks:
+  proxy:
+    external: true
+
+services:
+  dbmate:
+    image: ghcr.io/amacneil/dbmate:latest
+    container_name: dbmate
+    hostname: dbmate
+    user: "1001:1001"
+    volumes:
+      - ./db/migrations:/db/migrations
+      - ../run/data:/db
+    environment:
+      DATABASE_URL: sqlite:/db/network-inventory.db
+    entrypoint: ["dbmate"]
+    command: ["up"]
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /db/network-inventory.db ]"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+
+  pingpong:
+    depends_on:
+      dbmate:
+        condition: service_completed_successfully
+    image: guidcruncher/pingpong:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pingpong
+    hostname: pingpong
+    restart: unless-stopped
+    network_mode: host
+
+    # Volume mounts
+    volumes:
+      - ../run/config:/config
+      - ../run/data:/data
+    environment:
+      - NODE_ENV=production

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "RULE-001",
+    "name": "Unencrypted Remote Access",
+    "description": "Telnet (23) detected. Traffic is sent in cleartext, including passwords.",
+    "category": "port",
+    "impact": 40,
+    "criteria": {
+      "field": "port",
+      "operator": "equals",
+      "value": 23
+    },
+    "remediation": "Disable Telnet and use SSH (Port 22) for encrypted management."
+  },
+  {
+    "id": "RULE-002",
+    "name": "Legacy File Transfer",
+    "description": "FTP (21) detected. FTP is insecure and prone to credential sniffing.",
+    "category": "port",
+    "impact": 25,
+    "criteria": {
+      "field": "port",
+      "operator": "equals",
+      "value": 21
+    },
+    "remediation": "Replace FTP with SFTP or HTTPS for secure file transfers."
+  },
+  {
+    "id": "RULE-003",
+    "name": "Exposed SMB Shares",
+    "description": "SMB (445) detected. This is a high-value target for ransomware and lateral movement.",
+    "category": "port",
+    "impact": 35,
+    "criteria": {
+      "field": "port",
+      "operator": "equals",
+      "value": 445
+    },
+    "remediation": "Ensure SMB is not exposed to the public and use SMB 3.0+ with encryption."
+  },
+  {
+    "id": "RULE-004",
+    "name": "Stealth Hardware",
+    "description": "The device is using a randomized MAC address.",
+    "category": "hardware",
+    "impact": 15,
+    "criteria": {
+      "field": "isRand",
+      "operator": "equals",
+      "value": true
+    },
+    "remediation": "Disable 'Private WiFi Address' in device settings for trusted networks."
+  },
+  {
+    "id": "RULE-005",
+    "name": "Obscure Vendor",
+    "description": "The hardware manufacturer could not be identified via OUI lookup.",
+    "category": "identity",
+    "impact": 10,
+    "criteria": {
+      "field": "vendor",
+      "operator": "equals",
+      "value": "Unknown"
+    },
+    "remediation": "Verify the physical device identity to ensure no unauthorized hardware exists."
+  },
+  {
+    "id": "RULE-006",
+    "name": "Database Port Exposed",
+    "description": "A common database port (MySQL/Postgres) is open.",
+    "category": "port",
+    "impact": 20,
+    "criteria": {
+      "field": "port",
+      "operator": "in_list",
+      "value": [
+        3306,
+        5432
+      ]
+    },
+    "remediation": "Restrict database access to specific IP addresses via firewall."
+  },
+  {
+    "id": "RULE-007",
+    "name": "Untrusted Certificate",
+    "description": "The device is using a self-signed TLS certificate.",
+    "category": "security",
+    "impact": 30,
+    "criteria": {
+      "field": "certificate.isSelfSigned",
+      "operator": "equals",
+      "value": true
+    },
+    "remediation": "Review the certificate details. If this is a critical infrastructure device, consider installing a CA-signed certificate."
+  }
+]

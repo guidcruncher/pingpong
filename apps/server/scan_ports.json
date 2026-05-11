@@ -1,0 +1,259 @@
+{
+  "21": {
+    "service": "FTP",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "22": {
+    "service": "SSH",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "23": {
+    "service": "Telnet",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "25": {
+    "service": "SMTP",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "53": {
+    "service": "DNS",
+    "protocols": [
+      "TCP",
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "67": {
+    "service": "DHCP",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "80": {
+    "service": "HTTP",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "110": {
+    "service": "POP3",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "111": {
+    "service": "RPCBind",
+    "protocols": [
+      "TCP",
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "123": {
+    "service": "NTP",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "135": {
+    "service": "MSRPC",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "139": {
+    "service": "NetBIOS",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "143": {
+    "service": "IMAP",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "161": {
+    "service": "SNMP",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "443": {
+    "service": "HTTPS",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": true
+  },
+  "445": {
+    "service": "Microsoft-DS",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "631": {
+    "service": "IPP",
+    "protocols": [
+      "TCP",
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "993": {
+    "service": "IMAPS",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": true
+  },
+  "995": {
+    "service": "POP3S",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": true
+  },
+  "1723": {
+    "service": "PPTP",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "1900": {
+    "service": "UPnP/SSDP",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "3306": {
+    "service": "MySQL",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "3389": {
+    "service": "RDP",
+    "protocols": [
+      "TCP",
+      "UDP"
+    ],
+    "isTls": true
+  },
+  "5353": {
+    "service": "mDNS",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "5432": {
+    "service": "PostgreSQL",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "5900": {
+    "service": "VNC",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "7000": {
+    "service": "AFS/AirPlay",
+    "protocols": [
+      "TCP",
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "7359": {
+    "service": "Jellyfin",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "8080": {
+    "service": "HTTP-Proxy",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "8443": {
+    "service": "HTTPS-Alt",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": true
+  },
+  "9100": {
+    "service": "JetDirect",
+    "protocols": [
+      "TCP"
+    ],
+    "isTls": false
+  },
+  "9999": {
+    "service": "Tapo-Manager",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "1194": {
+    "service": "OpenVPN",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": true
+  },
+  "51820": {
+    "service": "Wireguard",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "41641": {
+    "service": "Tailscale",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  },
+  "9993 ": {
+    "service": "ZeroTier",
+    "protocols": [
+      "UDP"
+    ],
+    "isTls": false
+  }
+}
