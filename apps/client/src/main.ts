@@ -1,6 +1,6 @@
 import "bootstrap"
 import { createApp } from "vue"
-import "./style.css"
+import './assets/style.scss'
 
 // Import Bootstrap CSS and JS Bundle (Includes Popper)
 import "bootstrap/dist/css/bootstrap.min.css"
