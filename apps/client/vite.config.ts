@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite'
+import {BootstrapVueNextResolver} from 'bootstrap-vue-next/resolvers'
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,7 @@ export default defineConfig({
       extensions: ['vue'],
       directoryAsNamespace: false,
       dts: true, 
+      resolvers: [BootstrapVueNextResolver()],
     }),
   ],
   css: {
