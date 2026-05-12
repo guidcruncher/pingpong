@@ -6,9 +6,9 @@ export class NetworkScanJob implements IScheduledJob {
   cron: string = "*/15 * * * *"
   title: string = "Network Scanner"
 
-  //  async onBoot(ctx: any): Promise<any> {
-  //    return this.task(ctx)
-  //  }
+  async onBoot(ctx: any): Promise<any> {
+    return this.task(ctx)
+  }
 
   async task(ctx: any): Promise<any> {
     const machineRepository = new MachineRepository()
