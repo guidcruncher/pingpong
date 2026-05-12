@@ -1,5 +1,5 @@
 <template>
-  <BNavbar v-b-color-mode="'dark'" toggleable="lg" variant="primary" sticky="true">
+  <BNavbar v-b-color-mode="'dark'" toggleable="lg" variant="primary" sticky="top">
     <BNavbarBrand href="#navbar-overview">PingPong Explorer</BNavbarBrand>
     <BNavbarToggle target="nav-collapse" />
     <BCollapse id="nav-collapse" is-nav>
