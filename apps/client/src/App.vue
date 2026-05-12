@@ -51,12 +51,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watchEffect } from "vue"
-import {
-  Shield as ShieldIcon,
-  Search as SearchIcon,
-  Sun as SunIcon,
-  Moon as MoonIcon,
-} from "@lucide/vue"
 import { useNetworkClient } from "./composables/useNetworkClient"
 import { type MachineInfo } from "@pingpong/shared"
 
@@ -72,11 +66,6 @@ const theme = ref<"light" | "dark">((localStorage.getItem("theme") as "light" | 
 const searchQuery = ref<string>("")
 const devices = ref<MachineInfo[]>([])
 const selectedId = ref<number | null>(null)
-
-const toggleTheme = (): void => {
-  theme.value = theme.value === "light" ? "dark" : "light"
-  localStorage.setItem("theme", theme.value)
-}
 
 watchEffect(() => {
   document.documentElement.setAttribute("data-bs-theme", theme.value)
