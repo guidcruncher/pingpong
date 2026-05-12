@@ -48,7 +48,9 @@ export class NetworkScanner implements IDiscovery {
     const portScanner = new PortScanner(portsFile)
 
     // 1. Run all raw discovery methods in parallel
-    const resultsArray = await Promise.all(this.discoverers.map((d) => d.discover()))
+    const resultsArray = await Promise.all(
+      this.discoverers.map((d) => d.discover({ target: opts?.target })),
+    )
 
     // 2. Merge and Deduplicate by IP
     const mergedMap = new Map<string, MachineInfo>()

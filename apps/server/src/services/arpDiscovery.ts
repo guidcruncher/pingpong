@@ -7,22 +7,27 @@ const execAsync = promisify(exec)
 
 export class ARPDiscovery implements IDiscovery {
   /**
-   * Scans the local network using arp-scan
+   * Scans a specific network or range using arp-scan
    * @param interface e.g., 'eth0' or 'wlan0'
+   * @param target e.g., '192.168.1.0/24' or '192.168.1.5'
    */
-  public async discover(opts?: { interface?: string }): Promise<MachineInfo[]> {
+  public async discover(opts?: { interface?: string; target?: string }): Promise<MachineInfo[]> {
     const machines: MachineInfo[] = []
 
     try {
-      // --localnet: Scans the subnet attached to the interface
-      // --plain: Outputs simple columns (IP, MAC, Vendor)
-      const iface = opts ? (opts.interface ?? "eth0") : "eth0"
-      const { stdout } = await execAsync(`arp-scan --interface=${iface} --localnet --plain`)
+      const iface = opts?.interface ?? "eth0"
+      // Default to --localnet if no specific target is provided
+      const target = opts?.target ?? "--localnet"
+
+      // We swap --localnet for the specific target string if it exists
+      const command = `arp-scan --interface=${iface} --plain ${target}`
+      const { stdout } = await execAsync(command)
 
       const lines = stdout.trim().split("\n")
 
       for (const line of lines) {
-        // arp-scan plain output: 192.168.1.1	00:11:22:33:44:55	Vendor Name
+        if (!line) continue
+
         const parts = line.split("\t")
 
         if (parts.length >= 2) {
@@ -46,14 +51,4 @@ export class ARPDiscovery implements IDiscovery {
 
     return machines
   }
-}
-
-export const runARPDiscovery = async (): Promise<MachineInfo[]> => {
-  const scanner: IDiscovery = new ARPDiscovery()
-  console.log("Scanning for devices...")
-
-  const devices = await scanner.discover()
-
-  console.log(`Found ${devices.length} unique hosts:`)
-  return devices
 }

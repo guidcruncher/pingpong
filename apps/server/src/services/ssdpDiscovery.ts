@@ -8,6 +8,7 @@ const SSDPClient = (ssdp as any).Client || (ssdp as any).default?.Client
 export class SSDPDiscovery implements IDiscovery {
   private client: ssdp.Client
   private machines: Map<string, MachineInfo>
+  private prefixFilter?: string // Store the parsed prefix
 
   constructor() {
     this.client = new SSDPClient({})
@@ -16,31 +17,45 @@ export class SSDPDiscovery implements IDiscovery {
 
   /**
    * Scans for UPnP/SSDP devices on the network
-   * @param timeout Time in milliseconds to wait for responses
+   * @param opts.target e.g., '192.168.1.0/24'
    */
-  public async discover(_opts?: any): Promise<MachineInfo[]> {
+  public async discover(opts?: { target?: string }): Promise<MachineInfo[]> {
     const timeout = 5000
     this.machines.clear()
 
+    // Parse the target (e.g., "192.168.1.0/24" -> "192.168.1.")
+    if (opts?.target) {
+      const ipPart = opts.target.split("/")[0]
+      const octets = ipPart.split(".")
+      this.prefixFilter = `${octets[0]}.${octets[1]}.${octets[2]}.`
+    } else {
+      this.prefixFilter = undefined
+    }
+
     // Listen for responses
     this.client.on("response", (headers: any, statusCode: any, rinfo: any) => {
-      this.processResponse(headers, rinfo.address)
+      const ip = rinfo.address
+
+      // Filter: Only process if it matches the prefix or if no filter is set
+      if (!this.prefixFilter || ip.startsWith(this.prefixFilter)) {
+        this.processResponse(headers, ip)
+      }
     })
 
-    // Start the search for all devices (ssdp:all)
+    // Start the search
     this.client.search("ssdp:all")
 
     return new Promise((resolve) => {
       setTimeout(() => {
         this.client.stop()
+        // Remove listeners to prevent memory leaks on subsequent runs
+        this.client.removeAllListeners("response")
         resolve(Array.from(this.machines.values()))
       }, timeout)
     })
   }
 
   private processResponse(headers: any, ip: string): void {
-    // SSDP doesn't give hostnames directly, usually a Location URL
-    // e.g., http://192.168.1.1:1900/rootDesc.xml
     const location = headers.LOCATION || ""
     let hostname = undefined
 
@@ -58,7 +73,6 @@ export class SSDPDiscovery implements IDiscovery {
       type: "ssdp",
       protocol: "udp",
       port: 1900,
-      // Map all other headers to the txt record for visibility
       txt: {
         server: headers.SERVER || "",
         usn: headers.USN || "",
@@ -68,7 +82,6 @@ export class SSDPDiscovery implements IDiscovery {
 
     if (this.machines.has(ip)) {
       const existing = this.machines.get(ip)!
-      // Prevent duplicate service entries
       if (!existing.mdnsServices.some((s) => s.name === service.name)) {
         existing.mdnsServices.push(service)
       }
@@ -76,7 +89,7 @@ export class SSDPDiscovery implements IDiscovery {
       this.machines.set(ip, {
         hostname: hostname,
         ipAddresses: [ip],
-        macAddress: undefined, // SSDP also does not provide MAC addresses
+        macAddress: undefined,
         mdnsServices: [service],
         firstSeen: 0,
         lastSeen: 0,
@@ -87,9 +100,10 @@ export class SSDPDiscovery implements IDiscovery {
 
 export const runSSDPDiscovery = async (): Promise<MachineInfo[]> => {
   const scanner: IDiscovery = new SSDPDiscovery()
-  console.log("Scanning for devices...")
+  console.log("Scanning for SSDP devices on 192.168.1.0 network...")
 
-  const devices = await scanner.discover()
+  // Pass the standard CIDR format
+  const devices = await scanner.discover({ target: "192.168.1.0/24" })
 
   console.log(`Found ${devices.length} unique hosts:`)
   return devices

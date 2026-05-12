@@ -11,10 +11,9 @@
             :aria-expanded="sidebarVisible ? 'true' : 'false'"
             @click="showSidebar"
             >&lt; Inventory</BButton
-          > </BCol
-        >
-        </BRow
-      >
+          >
+        </BCol>
+      </BRow>
       <BRow>
         <BCol md="3" class="scrollable-column">
           <BOffcanvas
