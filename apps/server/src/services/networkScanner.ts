@@ -171,7 +171,7 @@ export const runNetworkScanner = async (
   const scanner: IDiscovery = new NetworkScanner(machineRepository)
   console.log("Scanning for devices and fetching vendor info...")
 
-  const devices = await scanner.discover()
+  const devices = await scanner.discover({target: "192.168.1.0/24"})
 
   console.log(`\nFound ${devices.length} unique hosts:`)
   return devices
